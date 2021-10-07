@@ -7,7 +7,9 @@ This project is created on 6th October 2021
 Bikeshare Data Analysis
 
 ### Description
-In his project, I read, analyze and display some statistics about the bikeshare data in some cities in US
+In his project, I read, analyze and display some statistics about the bikeshare data in some cities in US.
+It starts by filtering data using month or weekday
+then displays various statistics about them and offers to see data in batches of 5 rows
 
 ### Files used
 bikeshare_2.py

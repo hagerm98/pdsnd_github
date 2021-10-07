@@ -93,6 +93,7 @@ def load_data(city, month, day):
     ORIGINAL_COLUMNS = df.columns
     
     # Compute Month, Weekday and Hour columns to facilitate filtering and stats computation below
+    # Storing them as lowercase strings to facilitate further processing and filtering
     df['Month'] = (df['Start Time'].dt.month_name()).str.lower()
     df['Weekday'] = (df['Start Time'].dt.day_name()).str.lower()
     df['Start Hour'] = df['Start Time'].dt.hour
