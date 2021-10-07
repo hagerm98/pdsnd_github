@@ -199,6 +199,19 @@ def user_stats(df):
     print('-'*40)
 
 
+def display_rows(df):
+    """ Displaying data, without the computed columns, 5 records each time """ 
+
+    df_to_display = df[ORIGINAL_COLUMNS]
+    while(not df_to_display.empty):
+        display_5_rows = input("\nWould you like to display 5 records of the data ? Enter yes or no.\n")
+        if display_5_rows.lower() != 'yes':
+            break
+        # Case answer is yes, print first 5 records, then drop them from dataframe and move to next iteration
+        print(df_to_display.head())
+        df_to_display = df_to_display.iloc[5:]
+
+
 def main():
     while True:
         city, month, day = get_filters()
@@ -211,15 +224,7 @@ def main():
             trip_duration_stats(df)
             user_stats(df)
 
-            # Displaying data, without the computed columns, 5 records each time
-            df_to_display = df[ORIGINAL_COLUMNS]
-            while(not df_to_display.empty):
-                display_5_rows = input("\nWould you like to display 5 records of the data ? Enter yes or no.\n")
-                if display_5_rows.lower() != 'yes':
-                    break
-                # Case answer is yes, print first 5 records, then drop them from dataframe and move to next iteration
-                print(df_to_display.head())
-                df_to_display = df_to_display.iloc[5:]
+            display_rows(df)
 
         else:
             print('Your specified filters yielded no records')
