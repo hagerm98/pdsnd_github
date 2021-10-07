@@ -3,44 +3,37 @@ import pandas as pd
 import datetime
 from pandas.io.parsers import read_csv
 
-CITY_DATA = { 'chicago': 'chicago.csv',
-              'new york city': 'new_york_city.csv',
-              'washington': 'washington.csv' }
+CITY_DATA = { 
+    'chicago': 'chicago.csv',
+    'new york city': 'new_york_city.csv',
+    'washington': 'washington.csv' 
+}
+
+DATE_ELEMENT_TYPE_TO_FORMAT = {
+    'month': '%B',
+    'weekday': '%A'
+}
 
 # Keep original columns for using to display data rows
 ORIGINAL_COLUMNS = []
 
-def check_month(month):
+def check_date_element(dt, type):
     """
-    Checks whether month is valid month filter
+    Checks whether date element is valid of provided type
 
     Args:
-        (str) month - month name to validate
+        (str) dt - date element to validate
+        (str) type - date element type, whether month or weekday, should be one included in DATE_ELEMENT_TYPE_TO_FORMAT
     Returns:
         (bool) - whether valid month filter or not
     """
-    if month == 'all': return True
+    if dt == 'all': return True
     try:
-        datetime.datetime.strptime(month, '%B')
+        datetime.datetime.strptime(dt, DATE_ELEMENT_TYPE_TO_FORMAT.get(type))
         return True
     except: 
         return False
 
-def check_weekday(day):
-    """
-    Checks whether day is valid weekday filter
-
-    Args:
-        (str) day - weekday name to validate
-    Returns:
-        (bool) - whether valid weekday filter or not
-    """
-    if day == 'all': return True
-    try:
-        datetime.datetime.strptime(day, '%A')
-        return True
-    except: 
-        return False
 
 def get_filters():
     """
@@ -63,7 +56,7 @@ def get_filters():
     # get user input for month (all, january, february, ... , june)
     while(True):
         month = input('Please enter month name or "all" for no filter: ').lower()
-        if check_month(month):
+        if check_date_element(month, 'month'):
             break
         else:
             print('Invalid month input ..')
@@ -71,7 +64,7 @@ def get_filters():
     # get user input for day of week (all, monday, tuesday, ... sunday)
     while(True):
         day = input('Please enter weekday name or "all" for no filter: ').lower()
-        if check_weekday(day):
+        if check_date_element(day, 'weekday'):
             break
         else:
             print('Invalid weekday input ..')
