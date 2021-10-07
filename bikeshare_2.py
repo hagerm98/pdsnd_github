@@ -35,6 +35,23 @@ def check_date_element(dt, type):
         return False
 
 
+def get_input(input_name, validation_function, additional_message=''):
+    """ 
+    Persistently ask for input till getting a valid one 
+    
+    Args:
+        (str) input_name - name of input field 
+        (lambda) validation_function - function used to validate input
+    Returns: 
+        (str) valid input value
+    """
+    while(True):
+        input_value = input(f"Please enter {input_name} {additional_message}: ").lower()
+        if validation_function(input_value):
+            return input_value
+        print(f"Invalid {input_name} input ..")
+
+
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
@@ -46,28 +63,13 @@ def get_filters():
     """
     print('Hello! Let\'s explore some US bikeshare data!')
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
-    while(True):
-        city = input('Please enter city name (Possible options "Chicago", "New York City" or "Washington"): ').lower()
-        if city in CITY_DATA:
-            break
-        else:
-            print('Invalid city input ..')
+    city = get_input('city', lambda city: city in CITY_DATA, additional_message='(Possible options "Chicago", "New York City" or "Washington")')
 
     # get user input for month (all, january, february, ... , june)
-    while(True):
-        month = input('Please enter month name or "all" for no filter: ').lower()
-        if check_date_element(month, 'month'):
-            break
-        else:
-            print('Invalid month input ..')
+    month = get_input('month name', lambda month: check_date_element(month, 'month'), additional_message='or "all" for no filter')
 
     # get user input for day of week (all, monday, tuesday, ... sunday)
-    while(True):
-        day = input('Please enter weekday name or "all" for no filter: ').lower()
-        if check_date_element(day, 'weekday'):
-            break
-        else:
-            print('Invalid weekday input ..')
+    day = get_input('week day', lambda weekday: check_date_element(weekday, 'weekday'), additional_message='or "all" for no filter')
 
     print('-'*40)
     return city, month, day
@@ -218,7 +220,6 @@ def main():
             user_stats(df)
 
             display_rows(df)
-
         else:
             print('Your specified filters yielded no records')
 
