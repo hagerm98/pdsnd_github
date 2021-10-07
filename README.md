@@ -10,6 +10,11 @@ Bikeshare Data Analysis
 In his project, I read, analyze and display some statistics about the bikeshare data in some cities in US.
 It starts by filtering data using month or weekday
 then displays various statistics about them and offers to see data in batches of 5 rows
+Statistics displayed are:
+- Statistics about most frequent time of bike rides
+- Statistics about stations and routes
+- Statistics about trip durations
+- Statistics about users; type, gender and birth year.
 
 ### Files used
 bikeshare_2.py
