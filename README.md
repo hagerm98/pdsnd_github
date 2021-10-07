@@ -7,10 +7,11 @@ This project is created on 6th October 2021
 Bikeshare Data Analysis
 
 ### Description
-Describe what your project is about and what it does
+In his project, I read, analyze and display some statistics about the bikeshare data in some cities in US
 
 ### Files used
-Include the files used
+bikeshare_2.py
+readme.txt
 
 ### Credits
 It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
