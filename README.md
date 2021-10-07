@@ -14,5 +14,4 @@ bikeshare_2.py
 readme.txt
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
-
+All used links and resources are included in readme.txt
